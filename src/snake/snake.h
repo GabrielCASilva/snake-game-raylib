@@ -1,6 +1,7 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include "../macros.h"
 #include "raylib.h"
 #include <stdlib.h>
 
@@ -21,6 +22,8 @@ void snake_control(Snake *snake[]);
 void snake_move_head(Snake *snake);
 
 void snake_move(Snake *snake[]);
+
+void snake_border_collision(Snake *snake[]);
 
 void snake_draw(Snake *snake[], int len);
 

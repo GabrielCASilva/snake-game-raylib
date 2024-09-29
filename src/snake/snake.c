@@ -13,9 +13,9 @@ Snake *snake_create(int grid, Vector2 position, int head) {
     snake->size = (Vector2){grid, grid};
     snake->speed = 5;
     if (head) {
-      snake->color = BLUE;
-    } else {
       snake->color = GREEN;
+    } else {
+      snake->color = (Color){0, 228 - 40, 48, 255};
     }
   }
 
@@ -63,6 +63,24 @@ void snake_move(Snake *snake[]) {
 void snake_move_head(Snake *snake) {
   snake->position.x += snake->size.x * snake->direction.x;
   snake->position.y += snake->size.y * snake->direction.y;
+}
+
+void snake_border_collision(Snake *snake[]) {
+  if (snake[0]->position.x >= (int)GAME_WIDTH) {
+    snake[0]->position.x = (int)MARGIN_ESQ;
+  }
+
+  if (snake[0]->position.x < (int)MARGIN_ESQ) {
+    snake[0]->position.x = (int)GAME_WIDTH - 32;
+  }
+
+  if (snake[0]->position.y >= (int)GAME_HEIGHT) {
+    snake[0]->position.y = (int)MARGIN_SUP;
+  }
+
+  if (snake[0]->position.y < (int)MARGIN_SUP) {
+    snake[0]->position.y = (int)GAME_HEIGHT - 32;
+  }
 }
 
 void snake_draw(Snake *snake[], int len) {
