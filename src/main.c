@@ -9,7 +9,7 @@ int main(void) {
   SetTargetFPS(60);
 
   while (!WindowShouldClose()) {
-    dt = GetFrameTime();
+    dt += GetFrameTime();
     // GameLoop
     loop(&dt);
     // Drawing Textures

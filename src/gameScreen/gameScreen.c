@@ -1,5 +1,4 @@
 #include "gameScreen.h"
-#include <stdio.h>
 
 static Snake *snake[TOTAL_SNAKE_LEN];
 
@@ -14,8 +13,6 @@ void game_screen_init() {
 
     if (i > 0)
       head = 0;
-
-    printf("%d\n", i);
 
     snake[i] = snake_create(GRID_SIZE, position, head);
   }
@@ -33,17 +30,14 @@ void game_screen_loop(float *dt) {
     DrawLine(0, y, SCREEN_WIDTH, y, LIGHTGRAY);
   }
 
+  // controle do jogador
+  snake_control(snake);
+
   // movimento da cobra
-  snake_move(snake);
-
-  /*
-for (int i = 0; i < TOTAL_SNAKE_LEN; i++) {
-  if (i >= snake[i]->len - 1) break;
-
-  printf("snake x: %.2f\n", snake[i]->position.x);
-  printf("snake y: %.2f\n", snake[i]->position.y);
-}
-*/
+  if (*dt >= .2) {
+    *dt = 0.0f;
+    snake_move(snake);
+  }
 }
 
 void game_screen_draw() {

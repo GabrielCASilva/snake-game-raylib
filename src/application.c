@@ -30,8 +30,6 @@ void loop(float *dt) {
       initLoad = false;
     }
 
-    *dt += GetFrameTime();
-    // TODO: Passar a soma do dt para a função de baixo
     game_screen_loop(dt);
 
     break;
