@@ -58,7 +58,7 @@ void loop(float *dt) {
 
 void draw() {
   BeginDrawing();
-  ClearBackground(RED);
+  ClearBackground(BLACK);
 
   switch (currentScreen) {
   case SCR_TITLE:
