@@ -1,8 +1,10 @@
 #include "gameScreen.h"
 
 static Snake *snake[TOTAL_SNAKE_LEN];
+static Collectable *c;
 
 void game_screen_init() {
+  // Create snake
   float x = (int)MARGIN_ESQ +
             (GRID_SIZE * 5); // 5 é quantos quadrados a cobra vai ser criada
   float y = (int)MARGIN_SUP + (GRID_SIZE * 5);
@@ -21,6 +23,12 @@ void game_screen_init() {
     // Cria cada segmento da cobra
     snake[i] = snake_create(GRID_SIZE, position, head);
   }
+
+  // Create Collectable
+  float c_x = (int)MARGIN_ESQ + (GRID_SIZE * 10);
+  float c_y = (int)MARGIN_SUP + (GRID_SIZE * 10);
+
+  c = collectables_create((Vector2){c_x, c_y});
 }
 
 void game_screen_loop(float *dt) {
@@ -47,8 +55,8 @@ void game_screen_loop(float *dt) {
 }
 
 void game_screen_draw() {
-  // TODO: DESENHAR CONTEUDO NA TELA
   snake_draw(snake, TOTAL_SNAKE_LEN);
+  collectables_draw(c);
 }
 
 void game_screen_destroy() {
