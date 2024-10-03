@@ -28,7 +28,7 @@ void snake_border_collision(Snake *snake[]);
 
 void snake_draw(Snake *snake[], int len);
 
-int snake_eat(Collectable *c, int *canEat);
+int snake_eat(Snake *snake[], Collectable *c, int *canEat, int *snakeLen);
 
 int snake_can_eat(Snake *head, Collectable *c);
 

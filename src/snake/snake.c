@@ -97,9 +97,18 @@ int snake_can_eat(Snake *head, Collectable *c) {
 }
 
 // coleta e retorna os pontos colecados
-int snake_eat(Collectable *c, int *canEat) {
+int snake_eat(Snake *snake[], Collectable *c, int *canEat, int *snakeLen) {
   if (*canEat) {
     *canEat = false;
+    // fazer a cobra aumentar de tamanho
+    // a cauda nova fica com a mesma posição da cauda antiga
+    // porque a posição da cauda vai atualizar corretamente na próxima vez que a
+    // cauda se mover
+    Snake *tail = snake[*snakeLen - 1];
+    snake[*snakeLen] = snake_create(GRID_SIZE, tail->position, false);
+    *snakeLen += 1;
+
+    // TODO: fazer com que a maça suma e talvez resurja também por aqui?
     return c->points;
   }
   return 0;
