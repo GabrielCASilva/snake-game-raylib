@@ -1,7 +1,9 @@
 #include "gameScreen.h"
+#include <stdio.h>
 
 static Snake *snake[TOTAL_SNAKE_LEN];
 static Collectable *c;
+static int points = 0;
 
 void game_screen_init() {
   // Create snake
@@ -45,13 +47,20 @@ void game_screen_loop(float *dt) {
   // controle do jogador
   snake_control(snake);
 
+  static int pode_comer = false;
   // movimento da cobra
   if (*dt >= .2) {
     *dt = 0.0f;
     snake_move(snake);
     // cobra colidindo com a margem do jogo
     snake_border_collision(snake);
+
+    pode_comer = snake_can_eat(snake[0], c);
+    // colisao cobra e coletavel
+    int c_points = snake_eat(c, &pode_comer);
+    points += c_points;
   }
+  printf("PONTOS: %d\n", points);
 }
 
 void game_screen_draw() {

@@ -90,8 +90,19 @@ void snake_draw(Snake *snake[], int len) {
   }
 }
 
-void snake_eat(Snake *snake) {
-  // TODO: FAZER A COBRA COMER A MAÇÃ OU ALGUMA OUTRA COISA
+int snake_can_eat(Snake *head, Collectable *c) {
+  if (head->position.x == c->position.x && head->position.y == c->position.y)
+    return 1;
+  return 0;
+}
+
+// coleta e retorna os pontos colecados
+int snake_eat(Collectable *c, int *canEat) {
+  if (*canEat) {
+    *canEat = false;
+    return c->points;
+  }
+  return 0;
 }
 
 void snake_die(Snake *snake) {

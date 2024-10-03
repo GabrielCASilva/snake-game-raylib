@@ -1,8 +1,9 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include "../collectables/collectables.h"
 #include "../macros.h"
-#include "raylib.h"
+#include <raylib.h>
 #include <stdlib.h>
 
 typedef struct Snake {
@@ -27,7 +28,9 @@ void snake_border_collision(Snake *snake[]);
 
 void snake_draw(Snake *snake[], int len);
 
-void snake_eat(Snake *snake);
+int snake_eat(Collectable *c, int *canEat);
+
+int snake_can_eat(Snake *head, Collectable *c);
 
 void snake_die(Snake *snake);
 
