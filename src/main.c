@@ -1,4 +1,5 @@
 #include "application.h"
+#include "grid/grid.h"
 #include "macros.h"
 #include "raylib.h"
 
@@ -14,6 +15,8 @@ int main(void) {
     loop(&dt);
     // Drawing Textures
     draw();
+
+    grid_debug();
   }
 
   CloseWindow();

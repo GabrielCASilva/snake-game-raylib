@@ -2,6 +2,7 @@
 #define SNAKE_H
 
 #include "../collectables/collectables.h"
+#include "../grid/grid.h"
 #include "../macros.h"
 #include <raylib.h>
 #include <stdlib.h>

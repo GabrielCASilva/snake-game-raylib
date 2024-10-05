@@ -19,7 +19,6 @@
 #define GAME_WIDTH (SCREEN_WIDTH - MARGIN_ESQ)
 #define GAME_HEIGHT (SCREEN_HEIGHT - MARGIN_SUP)
 
-#define DARKEST_GRAY                                                           \
-  (Color) { 80, 80, 80, 255 }
+#define DARKEST_GRAY (Color){80, 80, 80, 255}
 
 #endif

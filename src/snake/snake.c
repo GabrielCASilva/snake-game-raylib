@@ -51,10 +51,13 @@ void snake_move(Snake *snake[]) {
     for (int i = 0; snake[i] != NULL; i++) {
       if (i == 0) {
         snake_move_head(snake[i]);
+        grid_helper_mark(snake[i]->position);
       } else {
         Vector2 tempPos = snake[i]->position;
         snake[i]->position = prevPos;
+        grid_helper_mark(prevPos);
         prevPos = tempPos;
+        grid_helper_unmark(prevPos);
       }
     }
   }
@@ -108,7 +111,6 @@ int snake_eat(Snake *snake[], Collectable *c, int *canEat, int *snakeLen) {
     snake[*snakeLen] = snake_create(GRID_SIZE, tail->position, false);
     *snakeLen += 1;
 
-    // TODO: fazer com que a maça suma e talvez resurja também por aqui?
     return c->points;
   }
   return 0;

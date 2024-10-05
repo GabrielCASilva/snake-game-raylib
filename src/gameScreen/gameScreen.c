@@ -1,5 +1,4 @@
 #include "gameScreen.h"
-#include <stdio.h>
 
 static Snake *snake[TOTAL_SNAKE_LEN];
 static int snakeLen = SNAKE_INITIAL_SIZE;
@@ -56,13 +55,15 @@ void game_screen_loop(float *dt) {
     snake_border_collision(snake);
 
     int canEat = snake_can_eat(snake[0], c);
+
     // colisao cobra e coletavel
-    // TODO: rever a necessidade desse &canEat ser aqui e não dentro do arquivo
-    // snake
     int c_points = snake_eat(snake, c, &canEat, &snakeLen);
+    if (c_points) {
+      free(c);
+      // TODO: gerar a posição nova da maçã
+    }
     points += c_points;
   }
-  printf("PONTOS: %d\n", points);
 }
 
 void game_screen_draw() {
