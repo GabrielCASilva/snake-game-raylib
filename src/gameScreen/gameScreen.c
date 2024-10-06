@@ -60,7 +60,8 @@ void game_screen_loop(float *dt) {
     int c_points = snake_eat(snake, c, &canEat, &snakeLen);
     if (c_points) {
       free(c);
-      // TODO: gerar a posição nova da maçã
+      Vector2 pos = grid_generate_collectable_position();
+      c = collectables_create(pos);
     }
     points += c_points;
   }

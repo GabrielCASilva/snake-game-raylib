@@ -1,4 +1,5 @@
 #include "grid.h"
+#include <raylib.h>
 
 int grid[16][16] = {0};
 
@@ -7,16 +8,36 @@ void grid_mark_position(Vector2 pos) { grid[(int)pos.x][(int)pos.y] = 1; }
 void grid_unmark_position(Vector2 pos) { grid[(int)pos.x][(int)pos.y] = 0; }
 
 int grid_is_position_occupied(Vector2 pos) {
+  printf("is occupied: %d\n", grid[(int)pos.x][(int)pos.y] == 1);
   return grid[(int)pos.x][(int)pos.y] == 1;
 }
 
-Vector2 grid_generate_collectable_position() {
-  Vector2 pos = {.x = rand() % GRID_SIZE, .y = rand() % GRID_SIZE};
-  if (grid_is_position_occupied(pos)) {
-    return pos;
-  }
+int random_num(int min, int max) { return rand() % (max - min + 1) + min; }
 
-  return grid_generate_collectable_position();
+Vector2 grid_generate_collectable_position() {
+  Vector2 pos;
+  Vector2 pos_num;
+  do {
+    // Gera a posição na grade, ajustando para múltiplos de GRID_SIZE
+    int grid_posx =
+        random_num(MARGIN_ESQ / GRID_SIZE, GAME_SIZE / GRID_SIZE - 1);
+    int grid_posy =
+        random_num(MARGIN_SUP / GRID_SIZE, GAME_SIZE / GRID_SIZE - 1);
+
+    // Converte posições de grid para coordenadas reais
+    int posx = MARGIN_ESQ + grid_posx * GRID_SIZE;
+    int posy = MARGIN_SUP + grid_posy * GRID_SIZE;
+
+    pos = (Vector2){.x = posx, .y = posy};
+    pos_num = (Vector2){.x = grid_posx, .y = grid_posy};
+
+    printf("pos - x: %f y: %f\n", pos.x, pos.y);
+    printf("pos_num - x: %d y: %d\n", (int)pos_num.x, (int)pos_num.y);
+
+    // Verifica se a posição está ocupada, baseado na posição da grade
+  } while (grid_is_position_occupied(pos_num));
+
+  return pos; // Retorna a posição válida
 }
 
 Vector2 grid_get_position_without_offset(Vector2 pos) {

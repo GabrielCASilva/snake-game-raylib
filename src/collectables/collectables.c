@@ -2,10 +2,6 @@
 #include <raylib.h>
 #include <stdlib.h>
 
-/* typedef struct Collectable { */
-/*   int points; */
-/* } Collactable; */
-
 Collectable *collectables_create(Vector2 position) {
   Collectable *apple = (Collectable *)malloc(sizeof(Collectable));
 
