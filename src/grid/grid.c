@@ -7,33 +7,30 @@ void grid_mark_position(Vector2 pos) { grid[(int)pos.x][(int)pos.y] = 1; }
 
 void grid_unmark_position(Vector2 pos) { grid[(int)pos.x][(int)pos.y] = 0; }
 
+// TODO: Rever o bug que da quando o jogador vai para o canto esquerdo inferior
+// da tela, canto direito superior também
 int grid_is_position_occupied(Vector2 pos) {
+  /* printf("tá ocupado: %d\n", grid[(int)pos.x][(int)pos.y] == 1); */
   return grid[(int)pos.x][(int)pos.y] == 1;
 }
 
 int random_num(int min, int max) { return rand() % (max - min + 1) + min; }
 
 Vector2 grid_generate_collectable_position() {
-  Vector2 pos;
-  Vector2 pos_num;
-  do {
-    // Gera a posição na grade, ajustando para múltiplos de GRID_SIZE
-    int grid_posx =
-        random_num(MARGIN_ESQ / GRID_SIZE, GAME_SIZE / GRID_SIZE - 1);
-    int grid_posy =
-        random_num(MARGIN_SUP / GRID_SIZE, GAME_SIZE / GRID_SIZE - 1);
+  int grid_posx = random_num(MARGIN_ESQ / GRID_SIZE, GAME_SIZE / GRID_SIZE - 1);
+  int grid_posy = random_num(MARGIN_SUP / GRID_SIZE, GAME_SIZE / GRID_SIZE - 1);
 
-    // Converte posições de grid para coordenadas reais
-    int posx = MARGIN_ESQ + grid_posx * GRID_SIZE;
-    int posy = MARGIN_SUP + grid_posy * GRID_SIZE;
+  int posx = MARGIN_ESQ + grid_posx * GRID_SIZE;
+  int posy = MARGIN_SUP + grid_posy * GRID_SIZE;
 
-    pos = (Vector2){.x = posx, .y = posy};
-    pos_num = (Vector2){.x = grid_posx, .y = grid_posy};
+  Vector2 pos = (Vector2){.x = posx, .y = posy};
+  Vector2 pos_num = (Vector2){.x = grid_posx, .y = grid_posy};
 
-    // Verifica se a posição está ocupada, baseado na posição da grade
-  } while (grid_is_position_occupied(pos_num));
+  if (grid_is_position_occupied(pos_num)) {
+    return grid_generate_collectable_position();
+  };
 
-  return pos; // Retorna a posição válida
+  return pos;
 }
 
 Vector2 grid_get_position_without_offset(Vector2 pos) {
