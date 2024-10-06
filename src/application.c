@@ -1,8 +1,10 @@
 #include "application.h"
+#include "gameScreen/gameScreen.h"
 #include <raylib.h>
 
 GameScreen currentScreen = SCR_GAME;
 int initLoad = true;
+static int pause = false;
 
 void loop(float *dt) {
   if (IsKeyPressed(KEY_BACKSPACE)) {
@@ -30,8 +32,12 @@ void loop(float *dt) {
       initLoad = false;
     }
 
-    game_screen_loop(dt);
+    if (!pause) {
 
+      game_screen_loop(dt);
+
+      game_screen_destroy(&pause);
+    }
     break;
   case SCR_LEADER_BOARD:
     if (initLoad) {

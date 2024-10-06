@@ -4,6 +4,7 @@ static Snake *snake[TOTAL_SNAKE_LEN];
 static int snakeLen = SNAKE_INITIAL_SIZE;
 static Collectable *c;
 static int points = 0;
+static int isOver = false;
 
 void game_screen_init() {
   // Create snake
@@ -50,7 +51,14 @@ void game_screen_loop(float *dt) {
   // movimento e ações da cobra
   if (*dt >= .2) {
     *dt = 0.0f;
-    snake_move(snake);
+    snake_move(snake, &isOver);
+
+    if (isOver) {
+      snake_die(snake);
+      collectables_destroy(c);
+      return;
+    }
+
     // cobra colidindo com a margem do jogo
     snake_border_collision(snake);
 
@@ -72,6 +80,9 @@ void game_screen_draw() {
   collectables_draw(c);
 }
 
-void game_screen_destroy() {
-  // TODO: DESTRUIR VARIAVEIS
+void game_screen_destroy(int *p) {
+  if (isOver) {
+    *p = true;
+    printf("perdeu\n");
+  }
 }

@@ -16,7 +16,7 @@ int main(void) {
     // Drawing Textures
     draw();
 
-    grid_debug();
+    /* grid_debug(); */
   }
 
   CloseWindow();

@@ -45,12 +45,12 @@ void snake_control(Snake *snake[]) {
   }
 }
 
-void snake_move(Snake *snake[]) {
+void snake_move(Snake *snake[], int *isOver) {
   if (allowMove) {
     Vector2 prevPos = snake[0]->position;
     for (int i = 0; snake[i] != NULL; i++) {
       if (i == 0) {
-        snake_move_head(snake[i]);
+        snake_move_head(snake[i], isOver);
         grid_helper_mark(snake[i]->position);
       } else {
         Vector2 tempPos = snake[i]->position;
@@ -63,9 +63,23 @@ void snake_move(Snake *snake[]) {
   }
 }
 
-void snake_move_head(Snake *snake) {
-  snake->position.x += snake->size.x * snake->direction.x;
-  snake->position.y += snake->size.y * snake->direction.y;
+void snake_move_head(Snake *snake, int *isOver) {
+
+  float x = snake->position.x + (snake->size.x * snake->direction.x);
+  float y = snake->position.y + (snake->size.y * snake->direction.y);
+
+  int offset_x = MARGIN_ESQ / 32;
+  int offset_y = MARGIN_SUP / 32;
+
+  Vector2 pos = (Vector2){.x = (x / GRID_SIZE) - offset_x,
+                          .y = (y / GRID_SIZE) - offset_y};
+
+  if (grid_is_position_occupied(pos)) {
+    *isOver = true;
+  }
+
+  snake->position.x = x;
+  snake->position.y = y;
 }
 
 void snake_border_collision(Snake *snake[]) {
@@ -116,6 +130,8 @@ int snake_eat(Snake *snake[], Collectable *c, int *canEat, int *snakeLen) {
   return 0;
 }
 
-void snake_die(Snake *snake) {
-  // TODO: FAZER A COBRA MORRER
+void snake_die(Snake *snake[]) {
+  for (int i = 0; snake[i] != NULL; i++) {
+    free(snake[i]);
+  }
 }

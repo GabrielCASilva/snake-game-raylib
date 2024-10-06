@@ -8,7 +8,6 @@ void grid_mark_position(Vector2 pos) { grid[(int)pos.x][(int)pos.y] = 1; }
 void grid_unmark_position(Vector2 pos) { grid[(int)pos.x][(int)pos.y] = 0; }
 
 int grid_is_position_occupied(Vector2 pos) {
-  printf("is occupied: %d\n", grid[(int)pos.x][(int)pos.y] == 1);
   return grid[(int)pos.x][(int)pos.y] == 1;
 }
 
@@ -30,9 +29,6 @@ Vector2 grid_generate_collectable_position() {
 
     pos = (Vector2){.x = posx, .y = posy};
     pos_num = (Vector2){.x = grid_posx, .y = grid_posy};
-
-    printf("pos - x: %f y: %f\n", pos.x, pos.y);
-    printf("pos_num - x: %d y: %d\n", (int)pos_num.x, (int)pos_num.y);
 
     // Verifica se a posição está ocupada, baseado na posição da grade
   } while (grid_is_position_occupied(pos_num));

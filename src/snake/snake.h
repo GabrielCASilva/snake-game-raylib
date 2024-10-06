@@ -21,9 +21,9 @@ Snake *snake_create(int grid, Vector2 position, int head);
 
 void snake_control(Snake *snake[]);
 
-void snake_move_head(Snake *snake);
+void snake_move_head(Snake *snake, int *isOver);
 
-void snake_move(Snake *snake[]);
+void snake_move(Snake *snake[], int *isOver);
 
 void snake_border_collision(Snake *snake[]);
 
@@ -33,6 +33,6 @@ int snake_eat(Snake *snake[], Collectable *c, int *canEat, int *snakeLen);
 
 int snake_can_eat(Snake *head, Collectable *c);
 
-void snake_die(Snake *snake);
+void snake_die(Snake *snake[]);
 
 #endif

@@ -20,4 +20,4 @@ void collectables_draw(Collectable *c) {
 }
 
 // retorna a pontuação do objeto destruido
-int collectables_destroy() { return 0; }
+void collectables_destroy(Collectable *collectable) { free(collectable); }

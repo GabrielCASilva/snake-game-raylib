@@ -16,6 +16,6 @@ Collectable *collectables_create(Vector2 position);
 void collectables_draw(Collectable *collectable);
 
 // retorna a pontuação do objeto destruido
-int collectables_destroy();
+void collectables_destroy(Collectable *collectable);
 
 #endif
