@@ -68,11 +68,22 @@ void snake_move_head(Snake *snake, int *isOver) {
   float x = snake->position.x + (snake->size.x * snake->direction.x);
   float y = snake->position.y + (snake->size.y * snake->direction.y);
 
-  int offset_x = MARGIN_ESQ / 32;
-  int offset_y = MARGIN_SUP / 32;
+  int offset_x = MARGIN_ESQ / GRID_SIZE;
+  int offset_y = MARGIN_SUP / GRID_SIZE;
 
   Vector2 pos = (Vector2){.x = (x / GRID_SIZE) - offset_x,
                           .y = (y / GRID_SIZE) - offset_y};
+
+  // isso é necessário para ele não pegar uma posição inválida na grid
+  if (pos.x > 16)
+    pos.x = 0;
+  if (pos.y > 16)
+    pos.y = 0;
+
+  if (pos.x < 0)
+    pos.x = 15;
+  if (pos.y < 0)
+    pos.y = 15;
 
   if (grid_is_position_occupied(pos)) {
     *isOver = true;

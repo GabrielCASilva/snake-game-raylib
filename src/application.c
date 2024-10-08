@@ -4,7 +4,7 @@
 
 GameScreen currentScreen = SCR_GAME;
 int initLoad = true;
-static int pause = false;
+static int gameOver = false;
 
 void loop(float *dt) {
   if (IsKeyPressed(KEY_BACKSPACE)) {
@@ -32,11 +32,11 @@ void loop(float *dt) {
       initLoad = false;
     }
 
-    if (!pause) {
+    game_screen_loop(dt);
+    game_screen_destroy(&gameOver);
 
-      game_screen_loop(dt);
-
-      game_screen_destroy(&pause);
+    if (gameOver) {
+      currentScreen = SCR_GAMEOVER;
     }
     break;
   case SCR_LEADER_BOARD:
@@ -49,7 +49,7 @@ void loop(float *dt) {
       initLoad = false;
     }
     break;
-  case SCR_PAUSE:
+  case SCR_GAMEOVER:
     if (initLoad) {
       initLoad = false;
     }
@@ -79,7 +79,8 @@ void draw() {
   case SCR_CREDITS:
     temp_text_func("CREDITS");
     break;
-  case SCR_PAUSE:
+  case SCR_GAMEOVER:
+    temp_text_func("GAME OVER");
     break;
   default:
     break;

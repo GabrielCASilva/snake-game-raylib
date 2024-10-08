@@ -51,6 +51,7 @@ void game_screen_loop(float *dt) {
   // movimento e ações da cobra
   if (*dt >= .2) {
     *dt = 0.0f;
+    /* printf("is over: %d\n", isOver); */
     snake_move(snake, &isOver);
 
     if (isOver) {
@@ -80,9 +81,9 @@ void game_screen_draw() {
   collectables_draw(c);
 }
 
-void game_screen_destroy(int *p) {
+void game_screen_destroy(int *gameOver) {
   if (isOver) {
-    *p = true;
+    *gameOver = true;
     printf("perdeu\n");
   }
 }
