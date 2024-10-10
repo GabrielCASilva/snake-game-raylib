@@ -18,3 +18,5 @@ void grid_helper_mark(Vector2 pos);
 void grid_helper_unmark(Vector2 pos);
 
 void grid_debug();
+
+void grid_reset();

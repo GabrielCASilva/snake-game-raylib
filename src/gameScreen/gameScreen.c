@@ -3,10 +3,16 @@
 static Snake *snake[TOTAL_SNAKE_LEN];
 static int snakeLen = SNAKE_INITIAL_SIZE;
 static Collectable *c;
-static int points = 0;
-static int isOver = false;
+static int points;
+static int isOver;
 
 void game_screen_init() {
+  // Inicializando as variaveis
+  isOver = false;
+  points = 0;
+  snakeLen = SNAKE_INITIAL_SIZE;
+  snake_init_vars();
+
   // Create snake
   float x = (int)MARGIN_ESQ +
             (GRID_SIZE * 5); // 5 é quantos quadrados a cobra vai ser criada
@@ -68,7 +74,7 @@ void game_screen_loop(float *dt) {
     // colisao cobra e coletavel
     int c_points = snake_eat(snake, c, &canEat, &snakeLen);
     if (c_points) {
-      free(c);
+      collectables_destroy(c);
       Vector2 pos = grid_generate_collectable_position();
       c = collectables_create(pos);
     }
@@ -84,6 +90,6 @@ void game_screen_draw() {
 void game_screen_destroy(int *gameOver) {
   if (isOver) {
     *gameOver = true;
-    printf("perdeu\n");
+    grid_reset();
   }
 }

@@ -4,6 +4,8 @@
 
 static int allowMove = false;
 
+void snake_init_vars() { allowMove = false; }
+
 Snake *snake_create(int grid, Vector2 position, int head) {
   Snake *snake = (Snake *)malloc(sizeof(Snake));
 
@@ -144,5 +146,6 @@ int snake_eat(Snake *snake[], Collectable *c, int *canEat, int *snakeLen) {
 void snake_die(Snake *snake[]) {
   for (int i = 0; snake[i] != NULL; i++) {
     free(snake[i]);
+    snake[i] = NULL;
   }
 }

@@ -10,6 +10,7 @@ void loop(float *dt) {
   if (IsKeyPressed(KEY_BACKSPACE)) {
     currentScreen = SCR_TITLE;
     initLoad = true;
+    gameOver = false;
   }
 
   switch (currentScreen) {
@@ -37,6 +38,8 @@ void loop(float *dt) {
 
     if (gameOver) {
       currentScreen = SCR_GAMEOVER;
+      initLoad = true;
+      gameOver = false;
     }
     break;
   case SCR_LEADER_BOARD:

@@ -17,6 +17,8 @@ typedef struct Snake {
   Color color;
 } Snake;
 
+void snake_init_vars();
+
 Snake *snake_create(int grid, Vector2 position, int head);
 
 void snake_control(Snake *snake[]);

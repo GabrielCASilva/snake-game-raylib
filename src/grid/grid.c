@@ -1,5 +1,6 @@
 #include "grid.h"
 #include <raylib.h>
+#include <string.h>
 
 int grid[16][16] = {0};
 
@@ -64,3 +65,5 @@ void grid_helper_unmark(Vector2 pos) {
   Vector2 pos_grid = grid_get_position_without_offset(pos);
   grid_unmark_position(pos_grid);
 }
+
+void grid_reset() { memset(grid, 0, sizeof(grid[0][0]) * 16 * 16); }
