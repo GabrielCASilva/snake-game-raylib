@@ -1,6 +1,4 @@
 #include "collectables.h"
-#include <raylib.h>
-#include <stdlib.h>
 
 Collectable *collectables_create(Vector2 position) {
   Collectable *apple = (Collectable *)malloc(sizeof(Collectable));

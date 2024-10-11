@@ -1,6 +1,4 @@
 #include "grid.h"
-#include <raylib.h>
-#include <string.h>
 
 int grid[16][16] = {0};
 

@@ -1,8 +1,9 @@
 #ifndef COLLECTABLES_H
 #define COLLECTABLES_H
 
-#include "../macros.h"
+#include "../../macros.h"
 #include <raylib.h>
+#include <stdlib.h>
 
 typedef struct Collectable {
   int points;

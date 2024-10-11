@@ -1,7 +1,7 @@
 #include "application.h"
-#include "grid/grid.h"
 #include "macros.h"
 #include "raylib.h"
+#include "utils/grid/grid.h"
 
 int main(void) {
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Snake Game");

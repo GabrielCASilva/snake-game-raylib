@@ -1,6 +1,4 @@
 #include "application.h"
-#include "gameScreen/gameScreen.h"
-#include <raylib.h>
 
 GameScreen currentScreen = SCR_GAME;
 int initLoad = true;

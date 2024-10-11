@@ -1,28 +1,24 @@
-#ifndef BUTTON_H 
+#ifndef BUTTON_H
 #define BUTTON_H
 
+#include "../../utils/enums/enums.h"
 #include "raylib.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include "../enums/enums.h"
+#include <stdlib.h>
 
 typedef struct {
-	int fontsize;
-	int width;
-	int height;
-	const char *text;
-	ButtonType type;
-	Color textColor;
-	Color color;
-	int isSelected;
+  int fontsize;
+  int width;
+  int height;
+  const char *text;
+  ButtonType type;
+  Color textColor;
+  Color color;
+  int isSelected;
 } Button;
 
-Button* button_create(
-	int fontsize,
-	const char *text,
-	ButtonType type,
-	Color textColor,
-	Color color );
+Button *button_create(int fontsize, const char *text, ButtonType type,
+                      Color textColor, Color color);
 
 void button_destroy(Button *b);
 

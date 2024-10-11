@@ -1,7 +1,8 @@
-#include "../macros.h"
+#include "../../macros.h"
 #include <raylib.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void grid_mark_position(Vector2 pos);
 

@@ -1,10 +1,11 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include "../../macros.h"
+#include "../../utils/grid/grid.h"
 #include "../collectables/collectables.h"
-#include "../grid/grid.h"
-#include "../macros.h"
 #include <raylib.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct Snake {

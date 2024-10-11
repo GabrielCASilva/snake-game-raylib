@@ -1,9 +1,9 @@
-#ifndef TITLE_SCREEN_H 
+#ifndef TITLE_SCREEN_H
 #define TITLE_SCREEN_H
 
-#include "raylib.h"
-#include "../button/button.h"
-#include "../enums/enums.h"
+#include "../../objects/button/button.h"
+#include "../../utils/enums/enums.h"
+#include <raylib.h>
 
 void title_screen_loop_init();
 

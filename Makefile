@@ -8,7 +8,7 @@ LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 TARGET = main 
 
 # Arquivos fonte
-SRCS = $(wildcard src/*.c) $(wildcard src/**/*.c)
+SRCS = $(wildcard src/*.c) $(wildcard src/**/**/*.c)
 OBJS = $(SRCS:.c=.o)
 
 # Regra padrão

@@ -1,10 +1,10 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "enums/enums.h"
-#include "gameScreen/gameScreen.h"
-#include "raylib.h"
-#include "titleScreen/titleScreen.h"
+#include "screens/gameScreen/gameScreen.h"
+#include "screens/titleScreen/titleScreen.h"
+#include "utils/enums/enums.h"
+#include <raylib.h>
 #include <stdio.h>
 
 extern GameScreen currentScreen;

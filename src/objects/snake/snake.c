@@ -1,6 +1,4 @@
 #include "snake.h"
-#include "stdio.h"
-#include <raylib.h>
 
 static int allowMove = false;
 
