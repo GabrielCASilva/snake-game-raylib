@@ -2,6 +2,7 @@
 
 GameScreen currentScreen = SCR_GAME;
 int initLoad = true;
+int pause = false;
 static int gameOver = false;
 
 void loop(float *dt) {
@@ -29,15 +30,20 @@ void loop(float *dt) {
     if (initLoad) {
       game_screen_init();
       initLoad = false;
+      pause = false;
     }
 
-    game_screen_loop(dt);
-    game_screen_destroy(&gameOver);
+    game_screen_pause(&pause);
 
-    if (gameOver) {
-      currentScreen = SCR_GAMEOVER;
-      initLoad = true;
-      gameOver = false;
+    if (!pause) {
+      game_screen_loop(dt);
+      game_screen_destroy(&gameOver);
+
+      if (gameOver) {
+        currentScreen = SCR_GAMEOVER;
+        initLoad = true;
+        gameOver = false;
+      }
     }
     break;
   case SCR_LEADER_BOARD:

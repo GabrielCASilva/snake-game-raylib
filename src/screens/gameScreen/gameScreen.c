@@ -1,4 +1,5 @@
 #include "gameScreen.h"
+#include <raylib.h>
 
 static Snake *snake[TOTAL_SNAKE_LEN];
 static int snakeLen = SNAKE_INITIAL_SIZE;
@@ -79,6 +80,16 @@ void game_screen_loop(float *dt) {
       c = collectables_create(pos);
     }
     points += c_points;
+  }
+}
+
+void game_screen_pause(int *pause) {
+  if (IsKeyPressed(KEY_P)) {
+    if (*pause) {
+      *pause = false;
+    } else {
+      *pause = true;
+    }
   }
 }
 

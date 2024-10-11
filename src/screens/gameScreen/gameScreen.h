@@ -11,6 +11,8 @@ void game_screen_loop(float *dt);
 
 void game_screen_draw();
 
+void game_screen_pause(int *pause);
+
 void game_screen_destroy(int *p);
 
 #endif
