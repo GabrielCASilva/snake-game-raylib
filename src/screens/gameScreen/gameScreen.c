@@ -42,15 +42,6 @@ void game_screen_init() {
 }
 
 void game_screen_loop(float *dt) {
-  // Desenhar linhas verticais
-  for (int x = MARGIN_ESQ; x <= GAME_WIDTH; x += GRID_SIZE) {
-    DrawLine(x, MARGIN_SUP, x, GAME_HEIGHT, DARKEST_GRAY);
-  }
-
-  // Desenhar linhas horizontais
-  for (int y = MARGIN_SUP; y <= GAME_HEIGHT; y += GRID_SIZE) {
-    DrawLine(MARGIN_ESQ, y, GAME_WIDTH, y, DARKEST_GRAY);
-  }
 
   // controle do jogador
   snake_control(snake);
@@ -94,8 +85,21 @@ void game_screen_pause(int *pause) {
 }
 
 void game_screen_draw() {
+  game_screen_draw_grid();
   snake_draw(snake, TOTAL_SNAKE_LEN);
   collectables_draw(c);
+}
+
+void game_screen_draw_grid() {
+  // Desenhar linhas verticais
+  for (int x = MARGIN_ESQ; x <= GAME_WIDTH; x += GRID_SIZE) {
+    DrawLine(x, MARGIN_SUP, x, GAME_HEIGHT, DARKEST_GRAY);
+  }
+
+  // Desenhar linhas horizontais
+  for (int y = MARGIN_SUP; y <= GAME_HEIGHT; y += GRID_SIZE) {
+    DrawLine(MARGIN_ESQ, y, GAME_WIDTH, y, DARKEST_GRAY);
+  }
 }
 
 void game_screen_destroy(int *gameOver) {
