@@ -1,6 +1,7 @@
 #include "application.h"
+#include <stdbool.h>
 
-GameScreen currentScreen = SCR_GAME;
+GameScreen currentScreen = SCR_GAMEOVER;
 int initLoad = true;
 int pause = false;
 static int gameOver = false;
@@ -58,8 +59,10 @@ void loop(float *dt) {
     break;
   case SCR_GAMEOVER:
     if (initLoad) {
+      gameover_screen_init();
       initLoad = false;
     }
+    gameover_screen_loop(dt);
     break;
   default:
     if (initLoad) {
@@ -87,7 +90,7 @@ void draw() {
     temp_text_func("CREDITS");
     break;
   case SCR_GAMEOVER:
-    temp_text_func("GAME OVER");
+    gameover_screen_draw();
     break;
   default:
     break;
