@@ -1,7 +1,7 @@
 #include "application.h"
 #include <stdbool.h>
 
-GameScreen currentScreen = SCR_GAME;
+GameScreen currentScreen = SCR_TITLE;
 int initLoad = true;
 int pause = false;
 static int gameOver = false;

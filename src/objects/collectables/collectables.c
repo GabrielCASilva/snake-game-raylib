@@ -14,7 +14,8 @@ Collectable *collectables_create(Vector2 position) {
 }
 
 void collectables_draw(Collectable *c) {
-  DrawRectangle(c->position.x, c->position.y, c->size.x, c->size.y, c->color);
+  if (c != NULL)
+    DrawRectangle(c->position.x, c->position.y, c->size.x, c->size.y, c->color);
 }
 
 // retorna a pontuação do objeto destruido
