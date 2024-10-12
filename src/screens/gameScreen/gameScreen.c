@@ -4,8 +4,8 @@
 static Snake *snake[TOTAL_SNAKE_LEN];
 static int snakeLen = SNAKE_INITIAL_SIZE;
 static Collectable *c;
-static int points;
-static int isOver;
+static int points = 0;
+static int isOver = false;
 
 void game_screen_init() {
   // Inicializando as variaveis
@@ -20,7 +20,7 @@ void game_screen_init() {
   float y = (int)MARGIN_SUP + (GRID_SIZE * 5);
 
   int head = 1;
-  Vector2 position;
+  Vector2 position = (Vector2){.x = 0, .y = 0};
 
   for (int i = 0; i < snakeLen; i++) {
     // A posição da cobra deve ser sempre alinhada à grid

@@ -1,10 +1,11 @@
 #include "application.h"
 #include <stdbool.h>
 
-GameScreen currentScreen = SCR_GAMEOVER;
+GameScreen currentScreen = SCR_GAME;
 int initLoad = true;
 int pause = false;
 static int gameOver = false;
+static int score = 0;
 
 void loop(float *dt) {
   if (IsKeyPressed(KEY_BACKSPACE)) {
@@ -33,7 +34,6 @@ void loop(float *dt) {
       initLoad = false;
       pause = false;
     }
-
     game_screen_pause(&pause);
 
     if (!pause) {
@@ -59,7 +59,7 @@ void loop(float *dt) {
     break;
   case SCR_GAMEOVER:
     if (initLoad) {
-      gameover_screen_init();
+      gameover_screen_init(score);
       initLoad = false;
     }
     gameover_screen_loop(dt);
@@ -90,7 +90,7 @@ void draw() {
     temp_text_func("CREDITS");
     break;
   case SCR_GAMEOVER:
-    gameover_screen_draw();
+    gameover_screen_draw(score);
     break;
   default:
     break;
