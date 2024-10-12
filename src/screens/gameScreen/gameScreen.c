@@ -85,9 +85,15 @@ void game_screen_pause(int *pause) {
 }
 
 void game_screen_draw() {
-  game_screen_draw_grid();
+  game_screen_draw_ui();
   snake_draw(snake, TOTAL_SNAKE_LEN);
   collectables_draw(c);
+}
+
+void game_screen_draw_ui() {
+  game_screen_draw_grid();
+  const char *text = TextFormat("SCORE: %d", points);
+  DrawText(text, MARGIN_ESQ, MARGIN_SUP - 30, 22, GREEN);
 }
 
 void game_screen_draw_grid() {

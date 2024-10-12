@@ -15,6 +15,8 @@ void game_screen_pause(int *pause);
 
 void game_screen_draw();
 
+void game_screen_draw_ui();
+
 void game_screen_draw_grid();
 
 #endif
