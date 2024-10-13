@@ -3,6 +3,7 @@
 
 #include "screens/gameScreen/gameScreen.h"
 #include "screens/gameoverScreen/gameoverScreen.h"
+#include "screens/scoreScreen/scoreScreen.h"
 #include "screens/titleScreen/titleScreen.h"
 #include "utils/enums/enums.h"
 #include <raylib.h>

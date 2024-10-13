@@ -1,4 +1,5 @@
 #include "application.h"
+#include "screens/scoreScreen/scoreScreen.h"
 #include <stdbool.h>
 
 GameScreen currentScreen = SCR_TITLE;
@@ -50,6 +51,7 @@ void loop(float *dt) {
   case SCR_LEADER_BOARD:
     if (initLoad) {
       initLoad = false;
+      score_screen_init();
     }
     break;
   case SCR_CREDITS:
@@ -84,7 +86,7 @@ void draw() {
     game_screen_draw(score);
     break;
   case SCR_LEADER_BOARD:
-    temp_text_func("SCORE");
+    score_screen_draw();
     break;
   case SCR_CREDITS:
     temp_text_func("CREDITS");
