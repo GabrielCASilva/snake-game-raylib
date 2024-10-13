@@ -7,15 +7,15 @@
 
 void game_screen_init();
 
-void game_screen_loop(float *dt);
+void game_screen_loop(float *dt, int *points);
 
 void game_screen_destroy(int *p);
 
 void game_screen_pause(int *pause);
 
-void game_screen_draw();
+void game_screen_draw(int points);
 
-void game_screen_draw_ui();
+void game_screen_draw_ui(int points);
 
 void game_screen_draw_grid();
 

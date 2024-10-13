@@ -37,7 +37,7 @@ void loop(float *dt) {
     game_screen_pause(&pause);
 
     if (!pause) {
-      game_screen_loop(dt);
+      game_screen_loop(dt, &score);
       game_screen_destroy(&gameOver);
 
       if (gameOver) {
@@ -81,7 +81,7 @@ void draw() {
     title_screen_draw();
     break;
   case SCR_GAME:
-    game_screen_draw();
+    game_screen_draw(score);
     break;
   case SCR_LEADER_BOARD:
     temp_text_func("SCORE");

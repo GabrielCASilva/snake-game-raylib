@@ -4,13 +4,11 @@
 static Snake *snake[TOTAL_SNAKE_LEN];
 static int snakeLen = SNAKE_INITIAL_SIZE;
 static Collectable *c;
-static int points = 0;
 static int isOver = false;
 
 void game_screen_init() {
   // Inicializando as variaveis
   isOver = false;
-  points = 0;
   snakeLen = SNAKE_INITIAL_SIZE;
   snake_init_vars();
 
@@ -41,7 +39,7 @@ void game_screen_init() {
   c = collectables_create((Vector2){c_x, c_y});
 }
 
-void game_screen_loop(float *dt) {
+void game_screen_loop(float *dt, int *points) {
 
   // controle do jogador
   snake_control(snake);
@@ -70,7 +68,7 @@ void game_screen_loop(float *dt) {
       Vector2 pos = grid_generate_collectable_position();
       c = collectables_create(pos);
     }
-    points += c_points;
+    *points += c_points;
   }
 }
 
@@ -84,13 +82,13 @@ void game_screen_pause(int *pause) {
   }
 }
 
-void game_screen_draw() {
-  game_screen_draw_ui();
+void game_screen_draw(int points) {
+  game_screen_draw_ui(points);
   snake_draw(snake, TOTAL_SNAKE_LEN);
   collectables_draw(c);
 }
 
-void game_screen_draw_ui() {
+void game_screen_draw_ui(int points) {
   game_screen_draw_grid();
   const char *text = TextFormat("SCORE: %d", points);
   DrawText(text, MARGIN_ESQ, MARGIN_SUP - 30, 22, GREEN);
