@@ -20,6 +20,7 @@ void loop(float *dt) {
     if (initLoad) {
       title_screen_loop_init();
       initLoad = false;
+      score = 0;
     }
 
     title_screen_loop();

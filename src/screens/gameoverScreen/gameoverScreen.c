@@ -65,6 +65,7 @@ void _draw_gameover_text(int fontsize) {
   int titlePosY = (GetScreenHeight() / 2 - fontsize / 2) - fontsize;
 
   DrawText(title, titlePosX, titlePosY, fontsize, GREEN);
+  DrawText("Press backspace to return to Title Screen", 10, 10, 22, GREEN);
 }
 
 void _draw_score(int score, int fontsize) {

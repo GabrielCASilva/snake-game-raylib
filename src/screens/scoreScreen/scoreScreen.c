@@ -32,17 +32,18 @@ void _score_draw_score_text(int fontsize) {
   int titleWidth = MeasureText(title, fontsize);
 
   int titlePosX = GetScreenWidth() / 2 - titleWidth / 2;
-  int titlePosY = (GetScreenHeight() / 4 - fontsize / 2) - fontsize * 2;
+  int titlePosY = (GetScreenHeight() / 3 - fontsize / 2) - fontsize * 2;
 
   DrawText(title, titlePosX, titlePosY, fontsize, GREEN);
+  DrawText("Press backspace to return to Title Screen", 10, 10, 22, GREEN);
 }
 
 void _score_draw_score(int score, int fontsize, int index) {
-  const char *text = TextFormat("[ %d p ]", score);
+  const char *text = TextFormat("%d points", score);
   int textWidth = MeasureText(text, fontsize);
 
   int titlePosX = GetScreenWidth() / 2 - textWidth / 2;
-  int titlePosY = (GetScreenHeight() / 4 - fontsize / 2) + fontsize * index * 2;
+  int titlePosY = (GetScreenHeight() / 3 - fontsize / 2) + fontsize * index * 2;
 
   DrawText(text, titlePosX, titlePosY, fontsize, GREEN);
 }
